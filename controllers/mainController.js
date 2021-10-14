@@ -1,12 +1,13 @@
 const date = require('../getDate.js');
 const Task = require('../models/task');
 
-let toDoList = [];
-
-
 exports.getMainPage = (req, res) => {
-    let today = date.getTodayDateLong();
-    res.render('index.ejs', {date: today, myToDo: toDoList});
+    Task.fetchTasks(items =>{
+        let today = date.getTodayDateLong();
+        res.render('index.ejs', {date: today, myToDo: items});
+    });
+    
+   
 };
 
 exports.postNewTask = (req, res) => {
@@ -20,14 +21,8 @@ exports.postNewTask = (req, res) => {
 };
 
 exports.deleteTask =  (req, res) => {
-    let itemToDelete = req.body.checkbox;
-    for(let i = 0; i < toDoList.length; i++){
-        if(toDoList[i] === itemToDelete){
-            console.log(`item ${toDoList[i]} removed`)
-            toDoList.splice(i, 1);
-        }
-    }
-
+    //let itemToDelete = req.body.checkbox;
+    Task.deleteItem(req.body.checkbox);
     res.redirect('/');
 
 };

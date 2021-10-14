@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/697c2c5344.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <div class="box" id="heading">
-        <h1><%= date %> </h1>
+        <h1><i class="far fa-calendar-check"></i> <%= date %> </h1>
     </div>
 
     <div class="box">
         <% for(let i = 0; i < myToDo.length; i++) { %>
             <form action="/delete" method="POST">
                 <div class="item">
-                    <input type="checkbox" value="<%= myToDo[i] %>" name="checkbox" onchange="this.form.submit()" >
-                    <p><%= myToDo[i] %></p>
+                    <input type="checkbox" value="<%= myToDo[i].description %>" name="checkbox" onchange="this.form.submit()" >
+                    <p><%= myToDo[i].description %></p>
                 </div>
             </form>
             
